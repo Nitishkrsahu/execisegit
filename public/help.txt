@@ -1,0 +1,6 @@
+   
+   -Ajax request is comming right now.
+   -XMLHttpRequest is using http obj.
+   weather API = f8a95fb5f53f449cf2b4ae3e7dc1c145
+   nasa API = SBnJHgrm4NDORDLyeJVLmaI0hZZcwANC0y0XYcVT
+   https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}

@@ -1,0 +1,12 @@
+[
+    {
+        "title": "Iphone 15 (Black, 128 GB)",
+        "image": "./image/iphone.jpg",
+        "price": 56789
+    },
+    {
+        "title": "Iphone 15 (Green, 128 GB)",
+        "image": "./image/iphone-1.jpg",
+        "price": 46483
+    }
+]

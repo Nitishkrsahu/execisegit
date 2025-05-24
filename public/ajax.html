@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasa API</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/js/bootstrap.bundle.js">
+    <script>
+        function bodyLoad() {
+            fetch("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=SBnJHgrm4NDORDLyeJVLmaI0hZZcwANC0y0XYcVT")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (marsdata) {
+                    console.log(marsdata);
+                    marsdata.photos.map(function(photo){
+                        var tr = document.createElement("tr");
+                        var tdId = document.createElement("td");
+                        var tdImage = document.createElement("td");
+                        var tdCamera = document.createElement("td");
+                        var tdRover = document.createElement("td");
+                        tdId.innerHTML = photo.id;
+                        tdImage.innerHTML = `<a href=${photo.img_src} target="_blanket"><img src=${photo.img_src} width="200" height="200"></a>`;
+                        tdCamera.innerHTML = photo.camera.full_name;
+                        tdRover.innerHTML = photo.rover.name;
+                        tr.appendChild(tdId);
+                        tr.appendChild(tdImage);
+                        tr.appendChild(tdCamera);
+                        tr.appendChild(tdRover);
+                        document.querySelector("tbody").appendChild(tr);
+                    })
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    console.log("Fetch Successfully");
+                })
+        }
+    </script>
+</head>
+
+<body onload="bodyLoad()">
+    <div class="container-fluid">
+        <h2 class="text-center pt-5">Mars Rover Photos</h2>
+    <table class="table table-light">
+        <thead>
+            <tr>
+                <th># Photo ID</th>
+                <th class="bi bi-eye-fill">Preview</th>
+                <th class="bi bi-camera-fill">Camera</th>
+                <th class="bi bi-rocket-fill">Rover</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    </div>
+</body>
+
+</html>
