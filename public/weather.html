@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>weather</title>
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./style.css">
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        function bodyLoad() {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var lon = position.coords.longitude;
+                var lat = position.coords.latitude;
+                console.log(lon);
+                console.log(lat);
+                fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}5&appid=f8a95fb5f53f449cf2b4ae3e7dc1c145&units=imperial`)
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (weather) {
+                        console.log(weather);
+                        document.getElementById("countryName").innerHTML = weather.sys.country;
+                        document.getElementById("lblname").innerHTML = weather.name;
+                        document.getElementById("day").innerHTML = weather.weather[0].main;
+                        document.querySelector("img").src = `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`;
+                        
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        console.log("Finally Fetch")
+                    })
+            })
+        }
+    </script>
 </head>
-<body>
-    
+
+<body onload="bodyLoad()">
+    <div class="d-flex justify-content-center align-items-center container-fluid main-container">
+        <div class="w-75 shadow-box" style="height: 600px;">
+            <div class="row">
+                <div class="m-3 col">
+                    
+                    <span class="bi bi-geo-alt-fill text-success pe-2"></span><span id="lblname"></span>
+                    <span class="countryName"></span>
+                </div>
+                <div class="col">
+                    <span id="day"></span>
+                    <img>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
