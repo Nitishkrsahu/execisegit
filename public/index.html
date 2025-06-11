@@ -1,11 +1,22 @@
-<script>
-    class Name{
-        title = "Sumsamg Tv";
-        print(){
-            document.write(`${this.title}`);
-        }
+<!DOCTYPE html>
+<html lang="en">
 
-    }
-    let obj = new Name();
-    obj.print();
-</script>aja
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function database(...products){
+            const [name, price, Location] = products;
+            console.log(name);
+            }
+    </script>
+</head>
+
+<body>
+    <button onclick="database('Tv', 38747, ['hyd', 'Delhi'])" id="btnInsert" value="insert">Insert</button>
+    <button onclick="database(this.value, event)" id="btnDelete" value="delete">Delete</button>
+    <button onclick="database(this.value, event)" id="btnUpdate" value="update">Update</button>
+</body>
+
+</html>
